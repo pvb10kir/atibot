@@ -32,10 +32,7 @@ local function do_keyboard_private()
     local keyboard = {}
     keyboard.inline_keyboard = {
     {
-	        {text = '🔥برای پیام رسانی کلیک کنید🔮', callback_data = '/chat'},
-        },
-  {
-	        {text = '🔥شماره بنده🔮', callback_data = '!share'},
+	        {text = '🔥برای ارسال عکس یا غیره کلیک کنید🔮', callback_data = '/chat'},
         },
 	--[[	{
 				{text = '�برای خرید ربات کلیک کنید�', url = 'https://telegram.me/sphero_ch'},
@@ -76,12 +73,12 @@ local action = function(msg, blocks, ln)
         db:hset('bot:users', msg.from.id, 'xx')
         db:hincrby('bot:general', 'users', 1)
         if msg.chat.type == 'private' then
-            local message = [[📍برای پیام رسانی اینجا بزنید👇]]
+            local message = [[ برای ارتباط با ادمین گروه موزیکال یا ارسال عکس، ویس ، و غیره بر روی دکمه زیر کلیک کنید 👇]]
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
 			if msg.chat.type == 'group' or msg.chat.type == 'supergroup' then
-          api.sendKeyboard(msg.chat.id, '_Hi _*Send Me Start To Private Message*' ,do_keyboard_startme(), true)
+          api.sendKeyboard(msg.chat.id, 'سلام برای ارتباط با ادمین گروه موزیکال دکمه زیر رو بزن' ,do_keyboard_startme(), true)
         end
         return
     end
